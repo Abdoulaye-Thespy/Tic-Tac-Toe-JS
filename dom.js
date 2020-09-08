@@ -23,16 +23,25 @@ const chooseSign = () => {
 let playerOne = document.getElementById('uname').value;
 let playerTwo = document.getElementById('uname2').value;
 console.log (playerOne, playerTwo);
-  cont.innerHTML = `  
-  <h1 class="head">TIC TAC TOE JS</h1>
-  <h4>${playerOne} Welcome, your sign is: X<h4>
-  <h4>${playerTwo} Welcome, your sign is: 0<h4>
+  cont.innerHTML = `
+   <h1 class="head">TIC TAC TOE JS</h1>
+  <div class="form_div"> 
+  <h4 class="player">${playerOne} Welcome, your sign is: X<h4>
+  <h4 class="player">${playerTwo} Welcome, your sign is: 0<h4>
   <button type="submit" class="btn btn-primary" onclick="display.gameBoard()">NEXT</button>
   <h6>Click to start the game<h6>
+  </div>  
+
   `;
 
 };
 
-return {welcome, chooseSign};
+const gameBoard = () => {
+ cont.innerHTML = `
+  <h1 class="head"> GAME BOARD </h1>
+
+  `
+};
+return {welcome, chooseSign, gameBoard};
 })();
 

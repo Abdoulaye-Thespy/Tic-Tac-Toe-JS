@@ -20,3 +20,10 @@
   margin-top: -2rem;
   padding-top: 4rem;
   color: #3366cc;
+}
+
+.player {
+  color: #006600;
+  font-size: 23px;
+  padding: 2rem 0 2rem 0;
+}
