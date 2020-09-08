@@ -1,0 +1,22 @@
+.navbar {
+  width: 900px;
+  margin: auto;
+}
+
+.game_board {
+  height: 80vh;
+  background-image: linear-gradient(to bottom right, #ffe6ee,#660020);
+  width: 900px;
+  margin: auto;
+}
+
+.form_div {
+  width: 50%;
+  margin: 5rem auto 0 auto;
+}
+
+.head {
+  text-align: center;
+  margin-top: -2rem;
+  padding-top: 4rem;
+  color: #3366cc;
