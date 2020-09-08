@@ -5,7 +5,7 @@ const cont = document.getElementById('game');
 const welcome = () => {
   cont.innerHTML = `  
   <h1 class="head">TIC TAC TOE JS</h1>
-  <form action="/action_page.php" class="was-validated form_div">
+  <div class="was-validated form_div">
     <div class="form-group ">
       <label for="uname">PLAYER 1:</label>
       <input type="text" class="form-control" id="uname" placeholder="NAME PLAYER1" name="uname" required>
@@ -14,14 +14,22 @@ const welcome = () => {
       <label for="uname">PLAYER 2:</label>
       <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <button type="submit" class="btn btn-primary" onclick="display.chooseSign()">Submit</button>
+  </div>
   `;
 };
 
 const chooseSign = () => {
 let playerOne = document.getElementById('uname').value;
 let playerTwo = document.getElementById('uname2').value;
+console.log (playerOne, playerTwo);
+  cont.innerHTML = `  
+  <h1 class="head">TIC TAC TOE JS</h1>
+  <h4>${playerOne} Welcome, your sign is: X<h4>
+  <h4>${playerTwo} Welcome, your sign is: 0<h4>
+  <button type="submit" class="btn btn-primary" onclick="display.gameBoard()">NEXT</button>
+  <h6>Click to start the game<h6>
+  `;
 
 };
 
