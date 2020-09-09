@@ -16,6 +16,21 @@ const welcome = () => {
     </div>
     <button type="submit" class="btn btn-primary" onclick="display.chooseSign()">Submit</button>
   </div>
+  <div class=" gameboard">
+
+    <div class="grid-game"> 
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+  </div>
+   
+  </div>
   `;
 };
 
@@ -30,6 +45,21 @@ console.log (playerOne, playerTwo);
   <h4 class="player">${playerTwo} Welcome, your sign is: 0<h4>
   <button type="submit" class="btn btn-primary" onclick="display.gameBoard()">NEXT</button>
   <h6>Click to start the game<h6>
+  </div>
+  <div class=" gameboard">
+
+    <div class="grid-game"> 
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+  </div>
+   
   </div>  
 
   `;
@@ -38,7 +68,30 @@ console.log (playerOne, playerTwo);
 
 const gameBoard = () => {
  cont.innerHTML = `
-  <h1 class="head"> GAME BOARD </h1>
+  <h1 class="head"> SCORE </h1>
+  <div class=" gameboard">
+
+  <div class="status_reset">
+ 
+   <div class="status"> Abdoulaye is next</div>
+   <div class="reset"> Reset</div>
+  </div>
+
+    <div class="grid-game"> 
+   <div class="cell"></div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+  </div>
+   
+  </div>
+
+
 
   `
 };
