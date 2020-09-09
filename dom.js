@@ -69,24 +69,24 @@ console.log (playerOne, playerTwo);
 const gameBoard = () => {
  cont.innerHTML = `
   <h1 class="head"> SCORE </h1>
-  <div class=" gameboard">
 
-  <div class="status_reset">
+    <div class="status_reset">
  
    <div class="status"> Abdoulaye is next</div>
    <div class="reset"> Reset</div>
   </div>
+  <div class=" gameboard">
 
-    <div class="grid-game"> 
-   <div class="cell"></div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
+<div class="grid-game"> 
+   <div class="cell cellPlay"></div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay"> </div>
   </div>
    
   </div>

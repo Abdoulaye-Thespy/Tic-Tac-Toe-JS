@@ -64,3 +64,11 @@
   width: 140px;
   background-color: #14BDAC;
 }
+
+.cellPlay {
+  cursor: pointer;
+}
+
+.cellPlay:hover {
+  background-color: #16d0bd;
+}
