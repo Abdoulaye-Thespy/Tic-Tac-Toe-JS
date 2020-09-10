@@ -48,7 +48,7 @@ console.log (playerOne, playerTwo);
   </div>
   <div class=" gameboard">
 
-    <div class="grid-game"> 
+   <div class="grid-game"> 
    <div class="cell"> </div>
    <div class="cell"> </div>
    <div class="cell"> </div>
@@ -63,8 +63,16 @@ console.log (playerOne, playerTwo);
   </div>  
 
   `;
+ 
 
 };
+
+
+const change = (e) => {
+    console.log("hello");
+}
+
+
 
 const gameBoard = () => {
  cont.innerHTML = `
@@ -90,10 +98,10 @@ const gameBoard = () => {
   </div>
    
   </div>
-
-
-
   `
+    for ( const cell of cellBloc) {
+    cell.addEventListener('click', change);
+}
 };
 return {welcome, chooseSign, gameBoard};
 })();

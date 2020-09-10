@@ -3,6 +3,9 @@
 let cellBloc = document.getElementsByClassName('cell');
 console.log(cellBloc);
 
+for ( const cell of cellBloc) {
+    console.log(cell);
+}
 
 const Player = (name) => {
  const sayName = () => console.log(`my name is ${name}`)
@@ -13,11 +16,4 @@ const Player = (name) => {
 
 let num = 0;
 
-function signCell() {
-	
 
-	if (num === 0){
-		cellBloc.
-	}
-  
-}

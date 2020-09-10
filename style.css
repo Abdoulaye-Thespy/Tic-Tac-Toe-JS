@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+body {
+  font-family: sans-serif;
+}
+
 .navbar {
   width: 60%;
   margin: auto;
