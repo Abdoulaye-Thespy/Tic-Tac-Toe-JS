@@ -50,8 +50,9 @@ body {
 .status_reset {
   display: flex;
   font-size: 20px;
-  margin-top: 25px;
-  justify-content: space-around;
+  margin: 55px auto 55px auto;
+  justify-content: space-between;
+  width: 50rem;
 }
 
 .grid-game {
@@ -71,8 +72,21 @@ body {
 
 .cellPlay {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cellPlay:hover {
   background-color: #16d0bd;
+}
+
+.t::before {
+  content: '0';
+  font-size: 150px;
+}
+
+.x::before {
+  content: 'X';
+  font-size: 150px;
 }

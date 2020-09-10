@@ -2,6 +2,8 @@ const display = (() => {
 
 const cont = document.getElementById('game');
 let cellBloc = document.getElementsByClassName('cell');
+let reset = document.getElementById('reset_id');
+console.log('reset')
 let isX = true
 
 const welcome = () => {
@@ -74,7 +76,7 @@ const change = (e) => {
     const allClass = e.target.classList;
     const location =e.target.classList[2];
     
-    if (allClass[3]!='x' && allClass[3]!='0') {
+    if (allClass[3]!='x' && allClass[3]!='t') {
         
             if (isX === true){
         e.target.classList.add('x');
@@ -82,8 +84,9 @@ const change = (e) => {
         console.log("true");
     }
     else {
-      e.target.classList.add('0');
+      e.target.classList.add('t');
         isX = true;
+        console.log("false");
     }
 }
 
@@ -99,7 +102,7 @@ const gameBoard = () => {
     <div class="status_reset">
  
    <div class="status"> Abdoulaye is next</div>
-   <div class="reset"> Reset</div>
+ <button onclick="display.gameBoard()">Reset</button> 
   </div>
   <div class=" gameboard">
 
