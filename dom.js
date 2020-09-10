@@ -1,6 +1,8 @@
 const display = (() => {
 
 const cont = document.getElementById('game');
+let cellBloc = document.getElementsByClassName('cell');
+let isX = true
 
 const welcome = () => {
   cont.innerHTML = `  
@@ -69,8 +71,24 @@ console.log (playerOne, playerTwo);
 
 
 const change = (e) => {
-    console.log("hello");
+    const allClass = e.target.classList;
+    const location =e.target.classList[2];
+    
+    if (allClass[3]!='x' && allClass[3]!='0') {
+        
+            if (isX === true){
+        e.target.classList.add('x');
+        isX = false;
+        console.log("true");
+    }
+    else {
+      e.target.classList.add('0');
+        isX = true;
+    }
 }
+
+    }
+    
 
 
 
@@ -86,19 +104,19 @@ const gameBoard = () => {
   <div class=" gameboard">
 
 <div class="grid-game"> 
-   <div class="cell cellPlay"></div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
-   <div class="cell cellPlay"> </div>
+   <div class="cell cellPlay top-left"></div>
+   <div class="cell cellPlay top-middle"> </div>
+   <div class="cell cellPlay top-right"> </div>
+   <div class="cell cellPlay middle-left"> </div>
+   <div class="cell cellPlay middle-middle"> </div>
+   <div class="cell cellPlay middle-righ"> </div>
+   <div class="cell cellPlay botom-left"> </div>
+   <div class="cell cellPlay botom-middle"> </div>
+   <div class="cell cellPlay bottom-right"> </div>
   </div>
    
   </div>
-  `
+  `;
     for ( const cell of cellBloc) {
     cell.addEventListener('click', change);
 }
