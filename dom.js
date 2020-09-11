@@ -1,10 +1,36 @@
-const display = (() => {
 
+const display = (() => {
 const cont = document.getElementById('game');
 let cellBloc = document.getElementsByClassName('cell');
 let reset = document.getElementById('reset_id');
-console.log('reset')
 let isX = true
+let gameOn = true;
+
+const next = () => {
+    if (isX){
+        document.getElementById('play').innerHTML = play1;
+    }
+    else {
+        document.getElementById('play').innerHTML = play2;
+    }
+};
+
+
+ const board = () => {
+    if (validateForm()){
+        display.gameBoard();
+    }
+};
+
+
+const validateForm = () => {
+  const name = document.getElementById('uname').value;
+  const author = document.getElementById('uname2').value;
+  if (name === '' || author === '') {
+    return false;
+  }
+  return true;
+};
 
 
 const checkWin= () => {
@@ -17,10 +43,10 @@ const checkWin= () => {
     let botomleft = cellBloc[6].classList[3];
     let botomMiddle = cellBloc[7].classList[3];
     let botomRight = cellBloc[8].classList[3];
-    console.log(topLEft, topMiddle, topRight, middleLeft, middleMiddle, middleRight, botomleft, botomMiddle, botomRight);
+    let sign=null;
     
     if ((topLEft && topLEft===topMiddle&& topLEft===topRight) || (topLEft && topLEft===middleLeft&& topLEft===botomleft) || (topLEft && topLEft===middleMiddle&& topLEft===botomRight)){
-        console.log(topLEft);
+        sign = topLEft;
     }
     
     else if ((topMiddle && topMiddle === topLEft && topMiddle===topRight) || (topMiddle && topMiddle===middleMiddle && topMiddle===botomMiddle)){
@@ -53,7 +79,7 @@ const checkWin= () => {
         else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight ===botomleft ) || (botomRight && botomRight === middleMiddle && botomRight === topLEft )){
         console.log(topLEft);
     }
-    
+    return sign;
     
 }
 
@@ -89,10 +115,13 @@ const welcome = () => {
   `;
 };
 
+
 const chooseSign = () => {
 let playerOne = document.getElementById('uname').value;
 let playerTwo = document.getElementById('uname2').value;
-console.log (playerOne, playerTwo);
+  window.play1 = playerOne;
+  window.play2 = playerTwo;
+  if (validateForm()) {
   cont.innerHTML = `
    <h1 class="head">TIC TAC TOE JS</h1>
   <div class="form_div"> 
@@ -118,6 +147,10 @@ console.log (playerOne, playerTwo);
   </div>  
 
   `;
+  } 
+  else {
+    welcome();   
+  }
  
 
 };
@@ -132,13 +165,15 @@ const change = (e) => {
             if (isX === true){
         e.target.classList.add('x');
         isX = false;
-        checkWin()
+        checkWin();
+        next();
     }
     else {
       e.target.classList.add('t');
         isX = true;
 
-        checkWin()
+        checkWin();
+        next();
     }
 }
 
@@ -148,13 +183,13 @@ const change = (e) => {
 
 
 const gameBoard = () => {
-    isX = true
+    isX = true;
  cont.innerHTML = `
   <h1 class="head"> SCORE </h1>
 
     <div class="status_reset">
  
-   <div class="status"> Abdoulaye is next</div>
+   <div class="status"> <span id="play"> </span>is next</div>
  <button onclick="display.gameBoard()">Reset</button> 
   </div>
   <div class=" gameboard">
@@ -173,6 +208,7 @@ const gameBoard = () => {
    
   </div>
   `;
+   document.getElementById('play').innerHTML = play1;
     for ( const cell of cellBloc) {
     cell.addEventListener('click', change);
 }

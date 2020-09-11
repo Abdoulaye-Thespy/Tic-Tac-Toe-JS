@@ -90,3 +90,15 @@ body {
   content: 'X';
   font-size: 150px;
 }
+
+#play {
+  font-size: 20px;
+  color: orangered;
+  margin: 1rem;
+}
+
+.status_reset {
+  background-color: #14BDAC;
+  padding: 2rem;
+  border-radius: 25px; 
+}
