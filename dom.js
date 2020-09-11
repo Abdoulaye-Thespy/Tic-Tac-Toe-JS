@@ -31,6 +31,30 @@ const checkWin= () => {
         console.log(topLEft);
     }
     
+    else if ((middleLeft && middleLeft === topLEft && middleLeft===botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft===middleRight)){
+        console.log(topLEft);
+    }
+    
+    else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle=== middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle===botomMiddle)){
+        console.log(topLEft);
+    }
+    
+    else if ((middleRight && middleRight === middleLeft && middleRight=== middleMiddle) || (middleRight && middleRight === topRight && middleRight===botomRight)){
+        console.log(topLEft);
+    }
+     else if ((botomleft && botomleft===middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft===botomRight) || (botomleft && botomleft===middleMiddle && botomleft===topRight)){
+        console.log(topLEft);
+    }
+    
+     else if ((botomMiddle && botomMiddle===middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle ===botomRight)){
+        console.log(topLEft);
+    }
+    
+        else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight ===botomleft ) || (botomRight && botomRight === middleMiddle && botomRight === topLEft )){
+        console.log(topLEft);
+    }
+    
+    
 }
 
 const welcome = () => {
