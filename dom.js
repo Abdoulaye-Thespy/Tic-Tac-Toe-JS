@@ -6,6 +6,33 @@ let reset = document.getElementById('reset_id');
 console.log('reset')
 let isX = true
 
+
+const checkWin= () => {
+    let topLEft = cellBloc[0].classList[3];
+    let topMiddle = cellBloc[1].classList[3];
+    let topRight = cellBloc[2].classList[3];
+    let middleLeft = cellBloc[3].classList[3];
+    let middleMiddle = cellBloc[4].classList[3];
+    let middleRight = cellBloc[5].classList[3];
+    let botomleft = cellBloc[6].classList[3];
+    let botomMiddle = cellBloc[7].classList[3];
+    let botomRight = cellBloc[8].classList[3];
+    console.log(topLEft, topMiddle, topRight, middleLeft, middleMiddle, middleRight, botomleft, botomMiddle, botomRight);
+    
+    if ((topLEft && topLEft===topMiddle&& topLEft===topRight) || (topLEft && topLEft===middleLeft&& topLEft===botomleft) || (topLEft && topLEft===middleMiddle&& topLEft===botomRight)){
+        console.log(topLEft);
+    }
+    
+    else if ((topMiddle && topMiddle === topLEft && topMiddle===topRight) || (topMiddle && topMiddle===middleMiddle && topMiddle===botomMiddle)){
+        console.log(topLEft);
+    }
+    
+    else if ((topRight && topRight === topLEft && topRight===topMiddle) || (topRight && topRight === middleRight && topRight===botomRight) || (topRight && topRight===middleMiddle&& topLEft===botomleft)){
+        console.log(topLEft);
+    }
+    
+}
+
 const welcome = () => {
   cont.innerHTML = `  
   <h1 class="head">TIC TAC TOE JS</h1>
@@ -81,21 +108,23 @@ const change = (e) => {
             if (isX === true){
         e.target.classList.add('x');
         isX = false;
-        console.log("true");
+        checkWin()
     }
     else {
       e.target.classList.add('t');
         isX = true;
-        console.log("false");
+
+        checkWin()
     }
 }
 
-    }
+ }
     
 
 
 
 const gameBoard = () => {
+    isX = true
  cont.innerHTML = `
   <h1 class="head"> SCORE </h1>
 
