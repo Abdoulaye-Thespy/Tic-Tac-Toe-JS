@@ -4,7 +4,7 @@ const cont = document.getElementById('game');
 let cellBloc = document.getElementsByClassName('cell');
 let reset = document.getElementById('reset_id');
 let isX = true
-let gameOn = true;
+let sign = null;
 
 const next = () => {
     if (isX){
@@ -43,45 +43,75 @@ const checkWin= () => {
     let botomleft = cellBloc[6].classList[3];
     let botomMiddle = cellBloc[7].classList[3];
     let botomRight = cellBloc[8].classList[3];
-    let sign=null;
     
     if ((topLEft && topLEft===topMiddle&& topLEft===topRight) || (topLEft && topLEft===middleLeft&& topLEft===botomleft) || (topLEft && topLEft===middleMiddle&& topLEft===botomRight)){
         sign = topLEft;
+         win();
+        console.log(sign);
     }
     
     else if ((topMiddle && topMiddle === topLEft && topMiddle===topRight) || (topMiddle && topMiddle===middleMiddle && topMiddle===botomMiddle)){
-        console.log(topLEft);
+        sign =topMiddle;
     }
     
     else if ((topRight && topRight === topLEft && topRight===topMiddle) || (topRight && topRight === middleRight && topRight===botomRight) || (topRight && topRight===middleMiddle&& topLEft===botomleft)){
-        console.log(topLEft);
+       sign=topRight;
     }
     
     else if ((middleLeft && middleLeft === topLEft && middleLeft===botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft===middleRight)){
-        console.log(topLEft);
+        sign = middleLeft;
     }
     
     else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle=== middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle===botomMiddle)){
-        console.log(topLEft);
+     sign = middleMiddle;
     }
     
     else if ((middleRight && middleRight === middleLeft && middleRight=== middleMiddle) || (middleRight && middleRight === topRight && middleRight===botomRight)){
-        console.log(topLEft);
+       sign =middleRight;
     }
      else if ((botomleft && botomleft===middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft===botomRight) || (botomleft && botomleft===middleMiddle && botomleft===topRight)){
-        console.log(topLEft);
+       sign =botomleft;
     }
     
      else if ((botomMiddle && botomMiddle===middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle ===botomRight)){
-        console.log(topLEft);
+       sign = botomMiddle;
     }
     
         else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight ===botomleft ) || (botomRight && botomRight === middleMiddle && botomRight === topLEft )){
-        console.log(topLEft);
+          sign = botomRight;
     }
-    return sign;
+    
     
 }
+
+
+const win = () => {
+ cont.innerHTML = `
+  <h1 class="head"> SCORE </h1>
+
+    <div class="status_reset">
+ 
+   <div class="status"> <span id="play"> </span>is next</div>
+ <button onclick="display.gameBoard()">Reset</button> 
+  </div>
+  <div class=" gameboard">
+
+<div class="grid-game"> 
+   <div class="cell cellPlay w"> w</div>
+   <div class="cell cellPlay w">w </div>
+   <div class="cell cellPlay w">w </div>
+   <div class="cell cellPlay w">w </div>
+   <div class="cell cellPlay w"> w</div>
+   <div class="cell cellPlay w"> w</div>
+   <div class="cell cellPlay w">w </div>
+   <div class="cell cellPlay w">w </div>
+   <div class="cell cellPlay w"> w</div>
+  </div>
+   
+  </div>
+  `;
+}
+
 
 const welcome = () => {
   cont.innerHTML = `  
