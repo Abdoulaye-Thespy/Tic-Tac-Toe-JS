@@ -44,7 +44,7 @@ const checkWin= () => {
     let botomMiddle = cellBloc[7].classList[3];
     let botomRight = cellBloc[8].classList[3];
     
-    if ((topLEft && topLEft===topMiddle&& topLEft===topRight) || (topLEft && topLEft===middleLeft&& topLEft===botomleft) || (topLEft && topLEft===middleMiddle&& topLEft===botomRight)){
+    if ((topLEft && topLEft===topMiddle&& topLEft===topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft===middleMiddle&& topLEft===botomRight)){
         sign = topLEft;
          win();
         console.log(sign);
@@ -69,7 +69,7 @@ const checkWin= () => {
     else if ((middleRight && middleRight === middleLeft && middleRight=== middleMiddle) || (middleRight && middleRight === topRight && middleRight===botomRight)){
        sign =middleRight;
     }
-     else if ((botomleft && botomleft===middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft===botomRight) || (botomleft && botomleft===middleMiddle && botomleft===topRight)){
+     else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft===middleMiddle && botomleft===topRight)){
        sign =botomleft;
     }
     
@@ -86,12 +86,11 @@ const checkWin= () => {
 
 
 const win = () => {
+    
  cont.innerHTML = `
-  <h1 class="head"> SCORE </h1>
+  <h1 class="head" id="winner"> </h1>
 
     <div class="status_reset">
- 
-   <div class="status"> <span id="play"> </span>is next</div>
  <button onclick="display.gameBoard()">Reset</button> 
   </div>
   <div class=" gameboard">
@@ -110,6 +109,13 @@ const win = () => {
    
   </div>
   `;
+  
+      if (sign === 'x') {
+        document.getElementById('winner').innerHTML = play1 +" WON!!!!";
+    }
+        else if (sign === 't') {
+        document.getElementById('winner').innerHTML = play2 +  " WON!!!!";
+    }
 }
 
 
