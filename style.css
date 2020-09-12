@@ -14,7 +14,7 @@ body {
 }
 
 .game_board {
-  background-image: linear-gradient(to bottom right, #ffe6ee,#660020);
+  background-image: linear-gradient(to bottom right, #ffe6ee, #660020);
   width: 60%;
   margin: auto;
   padding: 0 0 2rem 0;
@@ -29,17 +29,17 @@ body {
   text-align: center;
   margin-top: -2rem;
   padding-top: 4rem;
-  color: #3366cc;
+  color: #36c;
 }
 
 .player {
-  color: #006600;
+  color: #060;
   font-size: 23px;
   padding: 2rem 0 2rem 0;
 }
 
 .gameboard {
-  background-color: #14BDAC;
+  background-color: #14bdac;
   height: 50rem;
   width: 50rem;
   margin: auto;
@@ -53,6 +53,9 @@ body {
   margin: 55px auto 55px auto;
   justify-content: space-between;
   width: 50rem;
+  background-color: #14bdac;
+  padding: 2rem;
+  border-radius: 25px;
 }
 
 .grid-game {
@@ -61,13 +64,12 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
   justify-content: space-around;
-
 }
 
 .cell {
   height: 140px;
   width: 140px;
-  background-color: #14BDAC;
+  background-color: #14bdac;
 }
 
 .cellPlay {
@@ -95,12 +97,6 @@ body {
   font-size: 20px;
   color: orangered;
   margin: 1rem;
-}
-
-.status_reset {
-  background-color: #14BDAC;
-  padding: 2rem;
-  border-radius: 25px; 
 }
 
 .w {

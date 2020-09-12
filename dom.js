@@ -1,93 +1,30 @@
 
 const display = (() => {
-const cont = document.getElementById('game');
-let cellBloc = document.getElementsByClassName('cell');
-let reset = document.getElementById('reset_id');
-let isX = true
-let sign = null;
+  const cont = document.getElementById('game');
+  const cellBloc = document.getElementsByClassName('cell');
+  let isX = true;
+  let sign = null;
 
-const next = () => {
-    if (isX){
-        document.getElementById('play').innerHTML = play1;
+  const next = () => {
+    if (isX) {
+      document.getElementById('play').innerHTML = play1;
+    } else {
+      document.getElementById('play').innerHTML = play2;
     }
-    else {
-        document.getElementById('play').innerHTML = play2;
+  };
+
+  const validateForm = () => {
+    const name = document.getElementById('uname').value;
+    const author = document.getElementById('uname2').value;
+    if (name === '' || author === '') {
+      return false;
     }
-};
-
-
- const board = () => {
-    if (validateForm()){
-        display.gameBoard();
-    }
-};
-
-
-const validateForm = () => {
-  const name = document.getElementById('uname').value;
-  const author = document.getElementById('uname2').value;
-  if (name === '' || author === '') {
-    return false;
-  }
-  return true;
-};
+    return true;
+  };
 
 
-const checkWin= () => {
-    let topLEft = cellBloc[0].classList[3];
-    let topMiddle = cellBloc[1].classList[3];
-    let topRight = cellBloc[2].classList[3];
-    let middleLeft = cellBloc[3].classList[3];
-    let middleMiddle = cellBloc[4].classList[3];
-    let middleRight = cellBloc[5].classList[3];
-    let botomleft = cellBloc[6].classList[3];
-    let botomMiddle = cellBloc[7].classList[3];
-    let botomRight = cellBloc[8].classList[3];
-    
-    if ((topLEft && topLEft===topMiddle&& topLEft===topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft===middleMiddle&& topLEft===botomRight)){
-        sign = topLEft;
-         win();
-        console.log(sign);
-    }
-    
-    else if ((topMiddle && topMiddle === topLEft && topMiddle===topRight) || (topMiddle && topMiddle===middleMiddle && topMiddle===botomMiddle)){
-        sign =topMiddle;
-    }
-    
-    else if ((topRight && topRight === topLEft && topRight===topMiddle) || (topRight && topRight === middleRight && topRight===botomRight) || (topRight && topRight===middleMiddle&& topLEft===botomleft)){
-       sign=topRight;
-    }
-    
-    else if ((middleLeft && middleLeft === topLEft && middleLeft===botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft===middleRight)){
-        sign = middleLeft;
-    }
-    
-    else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle=== middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle===botomMiddle)){
-     sign = middleMiddle;
-    }
-    
-    else if ((middleRight && middleRight === middleLeft && middleRight=== middleMiddle) || (middleRight && middleRight === topRight && middleRight===botomRight)){
-       sign =middleRight;
-    }
-     else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft===middleMiddle && botomleft===topRight)){
-       sign =botomleft;
-    }
-    
-     else if ((botomMiddle && botomMiddle===middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle ===botomRight)){
-       sign = botomMiddle;
-    }
-    
-        else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight ===botomleft ) || (botomRight && botomRight === middleMiddle && botomRight === topLEft )){
-          sign = botomRight;
-    }
-    
-    
-}
-
-
-const win = () => {
-    
- cont.innerHTML = `
+  const win = () => {
+    cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
 
     <div class="status_reset">
@@ -109,18 +46,59 @@ const win = () => {
    
   </div>
   `;
-  
-      if (sign === 'x') {
-        document.getElementById('winner').innerHTML = play1 +" WON!!!!";
+
+    if (sign === 'x') {
+      document.getElementById('winner').innerHTML = `${play1} WON!!!!`;
+    } else if (sign === 't') {
+      document.getElementById('winner').innerHTML = `${play2} WON!!!!`;
     }
-        else if (sign === 't') {
-        document.getElementById('winner').innerHTML = play2 +  " WON!!!!";
-    }
-}
+  };
 
 
-const welcome = () => {
-  cont.innerHTML = `  
+  const checkWin = () => {
+    const topLEft = cellBloc[0].classList[3];
+    const topMiddle = cellBloc[1].classList[3];
+    const topRight = cellBloc[2].classList[3];
+    const middleLeft = cellBloc[3].classList[3];
+    const middleMiddle = cellBloc[4].classList[3];
+    const middleRight = cellBloc[5].classList[3];
+    const botomleft = cellBloc[6].classList[3];
+    const botomMiddle = cellBloc[7].classList[3];
+    const botomRight = cellBloc[8].classList[3];
+
+    if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
+      sign = topLEft;
+      win();
+    } else if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
+      sign = topMiddle;
+      win();
+    } else if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
+      sign = topRight;
+      win();
+    } else if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
+      sign = middleLeft;
+      win();
+    } else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
+      sign = middleMiddle;
+      win();
+    } else if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
+      sign = middleRight;
+      win();
+    } else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
+      sign = botomleft;
+      win();
+    } else if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
+      sign = botomMiddle;
+      win();
+    } else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
+      sign = botomRight;
+      win();
+    }
+  };
+
+
+  const welcome = () => {
+    cont.innerHTML = `  
   <h1 class="head">TIC TAC TOE JS</h1>
   <div class="was-validated form_div">
     <div class="form-group ">
@@ -149,16 +127,16 @@ const welcome = () => {
    
   </div>
   `;
-};
+  };
 
 
-const chooseSign = () => {
-let playerOne = document.getElementById('uname').value;
-let playerTwo = document.getElementById('uname2').value;
-  window.play1 = playerOne;
-  window.play2 = playerTwo;
-  if (validateForm()) {
-  cont.innerHTML = `
+  const chooseSign = () => {
+    const playerOne = document.getElementById('uname').value;
+    const playerTwo = document.getElementById('uname2').value;
+    window.play1 = playerOne;
+    window.play2 = playerTwo;
+    if (validateForm()) {
+      cont.innerHTML = `
    <h1 class="head">TIC TAC TOE JS</h1>
   <div class="form_div"> 
   <h4 class="player">${playerOne} Welcome, your sign is: X<h4>
@@ -183,44 +161,35 @@ let playerTwo = document.getElementById('uname2').value;
   </div>  
 
   `;
-  } 
-  else {
-    welcome();   
-  }
- 
-
-};
+    } else {
+      welcome();
+    }
+  };
 
 
-const change = (e) => {
+  const change = (e) => {
     const allClass = e.target.classList;
-    const location =e.target.classList[2];
-    
-    if (allClass[3]!='x' && allClass[3]!='t') {
-        
-            if (isX === true){
+
+    if (allClass[3] !== 'x' && allClass[3] !== 't') {
+      if (isX === true) {
         e.target.classList.add('x');
         isX = false;
         checkWin();
         next();
-    }
-    else {
-      e.target.classList.add('t');
+      } else {
+        e.target.classList.add('t');
         isX = true;
 
         checkWin();
         next();
+      }
     }
-}
-
- }
-    
+  };
 
 
-
-const gameBoard = () => {
+  const gameBoard = () => {
     isX = true;
- cont.innerHTML = `
+    cont.innerHTML = `
   <h1 class="head"> SCORE </h1>
 
     <div class="status_reset">
@@ -244,11 +213,10 @@ const gameBoard = () => {
    
   </div>
   `;
-   document.getElementById('play').innerHTML = play1;
-    for ( const cell of cellBloc) {
-    cell.addEventListener('click', change);
-}
-};
-return {welcome, chooseSign, gameBoard};
+    document.getElementById('play').innerHTML = play1;
+    for (const cell of cellBloc) {
+      cell.addEventListener('click', change);
+    }
+  };
+  return { welcome, chooseSign, gameBoard };
 })();
-
