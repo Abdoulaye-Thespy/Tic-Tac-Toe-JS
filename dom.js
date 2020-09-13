@@ -242,7 +242,7 @@ const display = (() => {
    
   </div>
   `;
-    document.getElementById('play').innerHTML = 'abdel';
+    document.getElementById('play').innerHTML = playerOne.getName();
     for (const cell of cellBloc) {
       cell.addEventListener('click', change);
     }
