@@ -19,6 +19,7 @@
 
 - Clone the git repository.
 - cd into the project
+- Open index.html using your prefered browser
 
 ## Author
 

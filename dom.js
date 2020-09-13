@@ -2,14 +2,16 @@
 const display = (() => {
   const cont = document.getElementById('game');
   const cellBloc = document.getElementsByClassName('cell');
+  const playerOne = document.getElementById('uname').value;
+  const playerTwo = document.getElementById('uname2').value;
   let isX = true;
   let sign = null;
 
   const next = () => {
     if (isX) {
-      document.getElementById('play').innerHTML = play1;
+      document.getElementById('play').innerHTML = playerOne;
     } else {
-      document.getElementById('play').innerHTML = play2;
+      document.getElementById('play').innerHTML = playerTwo;
     }
   };
 
@@ -48,9 +50,9 @@ const display = (() => {
   `;
 
     if (sign === 'x') {
-      document.getElementById('winner').innerHTML = `${play1} WON!!!!`;
+      document.getElementById('winner').innerHTML = `${playerOne} WON!!!!`;
     } else if (sign === 't') {
-      document.getElementById('winner').innerHTML = `${play2} WON!!!!`;
+      document.getElementById('winner').innerHTML = `${playerTwo} WON!!!!`;
     }
   };
 
@@ -131,10 +133,6 @@ const display = (() => {
 
 
   const chooseSign = () => {
-    const playerOne = document.getElementById('uname').value;
-    const playerTwo = document.getElementById('uname2').value;
-    window.play1 = playerOne;
-    window.play2 = playerTwo;
     if (validateForm()) {
       cont.innerHTML = `
    <h1 class="head">TIC TAC TOE JS</h1>
