@@ -1,11 +1,37 @@
+const cont = document.getElementById('game');
+const cellBloc = document.getElementsByClassName('cell');
+let playerOne = null;
+let playerTwo = null;
+let isX = true;
+let sign = null;
 
-const display = (() => {
-  const cont = document.getElementById('game');
-  const cellBloc = document.getElementsByClassName('cell');
-  const playerOne = document.getElementById('uname').value;
-  const playerTwo = document.getElementById('uname2').value;
-  let isX = true;
-  let sign = null;
+
+const Player = (name) => {
+    
+const getName = () => name;
+
+return {getName};
+
+};
+
+
+const createplayers = () => {
+let nameOne = document.getElementById('uname').value;
+let nameTwo = document.getElementById('uname2').value;
+console.log(nameOne, nameTwo);
+ playerOne = Player(nameOne);
+ playerTwo = Player(nameTwo);
+ display.chooseSign();
+}
+
+const winner = () => {
+  
+    if (sign === 'x') {
+      document.getElementById('winner').innerHTML = `${playerOne.getName()} WON!!!!`;
+    } else if (sign === 't') {
+      document.getElementById('winner').innerHTML = `${playerTwo.getName()} WON!!!!`;
+    }
+}
 
   const next = () => {
     if (isX) {
@@ -23,6 +49,13 @@ const display = (() => {
     }
     return true;
   };
+
+
+
+
+
+
+const display = (() => {
 
 
   const win = () => {
@@ -48,12 +81,7 @@ const display = (() => {
    
   </div>
   `;
-
-    if (sign === 'x') {
-      document.getElementById('winner').innerHTML = `${playerOne} WON!!!!`;
-    } else if (sign === 't') {
-      document.getElementById('winner').innerHTML = `${playerTwo} WON!!!!`;
-    }
+  winner();
   };
 
 
@@ -97,6 +125,9 @@ const display = (() => {
       win();
     }
   };
+  
+  
+  
 
 
   const welcome = () => {
@@ -111,7 +142,7 @@ const display = (() => {
       <label for="uname">PLAYER 2:</label>
       <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
     </div>
-    <button type="submit" class="btn btn-primary" onclick="display.chooseSign()">Submit</button>
+    <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
   </div>
   <div class=" gameboard">
 
@@ -137,8 +168,8 @@ const display = (() => {
       cont.innerHTML = `
    <h1 class="head">TIC TAC TOE JS</h1>
   <div class="form_div"> 
-  <h4 class="player">${playerOne} Welcome, your sign is: X<h4>
-  <h4 class="player">${playerTwo} Welcome, your sign is: 0<h4>
+  <h4 class="player"> Welcome, ${playerOne.getName()} your sign is: X<h4>
+  <h4 class="player"> Welcome, ${playerTwo.getName()} your sign is: 0<h4>
   <button type="submit" class="btn btn-primary" onclick="display.gameBoard()">NEXT</button>
   <h6>Click to start the game<h6>
   </div>
@@ -211,10 +242,15 @@ const display = (() => {
    
   </div>
   `;
-    document.getElementById('play').innerHTML = play1;
+    document.getElementById('play').innerHTML = 'abdel';
     for (const cell of cellBloc) {
       cell.addEventListener('click', change);
     }
   };
   return { welcome, chooseSign, gameBoard };
 })();
+
+
+
+//logics
+
