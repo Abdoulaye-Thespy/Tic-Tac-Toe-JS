@@ -22,8 +22,7 @@ console.log(nameOne, nameTwo);
  playerOne = Player(nameOne);
  playerTwo = Player(nameTwo);
  display.chooseSign();
-}
-
+};
 const winner = () => {
   
     if (sign === 'x') {
@@ -31,13 +30,15 @@ const winner = () => {
     } else if (sign === 't') {
       document.getElementById('winner').innerHTML = `${playerTwo.getName()} WON!!!!`;
     }
-}
+};
+
+  
 
   const next = () => {
     if (isX) {
-      document.getElementById('play').innerHTML = playerOne;
+      document.getElementById('play').innerHTML = playerOne.getName();
     } else {
-      document.getElementById('play').innerHTML = playerTwo;
+      document.getElementById('play').innerHTML = playerTwo.getName();
     }
   };
 
@@ -49,7 +50,7 @@ const winner = () => {
     }
     return true;
   };
-
+  
 
 
 
@@ -83,49 +84,6 @@ const display = (() => {
   `;
   winner();
   };
-
-
-  const checkWin = () => {
-    const topLEft = cellBloc[0].classList[3];
-    const topMiddle = cellBloc[1].classList[3];
-    const topRight = cellBloc[2].classList[3];
-    const middleLeft = cellBloc[3].classList[3];
-    const middleMiddle = cellBloc[4].classList[3];
-    const middleRight = cellBloc[5].classList[3];
-    const botomleft = cellBloc[6].classList[3];
-    const botomMiddle = cellBloc[7].classList[3];
-    const botomRight = cellBloc[8].classList[3];
-
-    if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
-      sign = topLEft;
-      win();
-    } else if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
-      sign = topMiddle;
-      win();
-    } else if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
-      sign = topRight;
-      win();
-    } else if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
-      sign = middleLeft;
-      win();
-    } else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
-      sign = middleMiddle;
-      win();
-    } else if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
-      sign = middleRight;
-      win();
-    } else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
-      sign = botomleft;
-      win();
-    } else if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
-      sign = botomMiddle;
-      win();
-    } else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
-      sign = botomRight;
-      win();
-    }
-  };
-  
   
   
 
@@ -196,7 +154,49 @@ const display = (() => {
   };
 
 
-  const change = (e) => {
+  const checkWin = () => {
+    const topLEft = cellBloc[0].classList[3];
+    const topMiddle = cellBloc[1].classList[3];
+    const topRight = cellBloc[2].classList[3];
+    const middleLeft = cellBloc[3].classList[3];
+    const middleMiddle = cellBloc[4].classList[3];
+    const middleRight = cellBloc[5].classList[3];
+    const botomleft = cellBloc[6].classList[3];
+    const botomMiddle = cellBloc[7].classList[3];
+    const botomRight = cellBloc[8].classList[3];
+
+    if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
+      sign = topLEft;
+      win();
+    } else if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
+      sign = topMiddle;
+      win();
+    } else if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
+      sign = topRight;
+      win();
+    } else if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
+      sign = middleLeft;
+      win();
+    } else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
+      sign = middleMiddle;
+      win();
+    } else if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
+      sign = middleRight;
+      win();
+    } else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
+      sign = botomleft;
+      win();
+    } else if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
+      sign = botomMiddle;
+      win();
+    } else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
+      sign = botomRight;
+      win();
+    }
+  };
+  
+  
+      const change = (e) => {
     const allClass = e.target.classList;
 
     if (allClass[3] !== 'x' && allClass[3] !== 't') {
