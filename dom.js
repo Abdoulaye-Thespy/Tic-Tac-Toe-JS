@@ -2,8 +2,7 @@ const cont = document.getElementById('game');
 const cellBloc = document.getElementsByClassName('cell');
 const last = document.getElementById('winner');
 const round = document.getElementById('play');
-let nameOne = document.getElementById('uname').value;
-let nameTwo = document.getElementById('uname2').value;
+
 let playerOne = null;
 let playerTwo = null;
 let isX = true;
@@ -18,9 +17,21 @@ return {getName};
 
 };
 
+//board Module
+const gameBoard = (() => {
+    const board = document.querySelector('#board');
+    const cells = document.querySelectorAll('[cell]');
+    const Gameboard = [ '', '', '', '', '', '', '', '', ''];
+
+    return {
+        board,
+        cells
+    }
+})();
 
 const createplayers = () => {
-console.log(nameOne, nameTwo);
+let nameOne = document.getElementById('uname').value;
+let nameTwo = document.getElementById('uname2').value;
  playerOne = Player(nameOne);
  playerTwo = Player(nameTwo);
  display.chooseSign();
@@ -65,7 +76,7 @@ const display = (() => {
     cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
     <div class="status_reset">
- <button onclick="display.gameBoard()">Reset</button> 
+ <button onclick="display.renderBoard()">Reset</button> 
   </div>
   <div class=" gameboard">
 <div class="grid-game"> 
@@ -127,7 +138,7 @@ const display = (() => {
   <div class="form_div"> 
   <h4 class="player"> Welcome, ${playerOne.getName()} your sign is: X<h4>
   <h4 class="player"> Welcome, ${playerTwo.getName()} your sign is: 0<h4>
-  <button type="submit" class="btn btn-primary" onclick="display.gameBoard()">NEXT</button>
+  <button type="submit" class="btn btn-primary" onclick="display.renderBoard()">NEXT</button>
   <h6>Click to start the game<h6>
   </div>
   <div class=" gameboard">
@@ -152,15 +163,16 @@ const display = (() => {
 
 
   const checkWin = () => {
-    const topLEft = cellBloc[0].classList[3];
-    const topMiddle = cellBloc[1].classList[3];
-    const topRight = cellBloc[2].classList[3];
-    const middleLeft = cellBloc[3].classList[3];
-    const middleMiddle = cellBloc[4].classList[3];
-    const middleRight = cellBloc[5].classList[3];
-    const botomleft = cellBloc[6].classList[3];
-    const botomMiddle = cellBloc[7].classList[3];
-    const botomRight = cellBloc[8].classList[3];
+    
+const topLEft = cellBloc[0].classList[3];
+const topMiddle = cellBloc[1].classList[3];
+const topRight = cellBloc[2].classList[3];
+const middleLeft = cellBloc[3].classList[3];
+const middleMiddle = cellBloc[4].classList[3];
+const middleRight = cellBloc[5].classList[3];
+const botomleft = cellBloc[6].classList[3];
+const botomMiddle = cellBloc[7].classList[3];
+const botomRight = cellBloc[8].classList[3];
 
     if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
       sign = topLEft;
@@ -213,8 +225,7 @@ const display = (() => {
   };
 
 
-  const gameBoard = () => {
-    isX = true;
+  const renderBoard = () => {
     cont.innerHTML = `
   <h1 class="head"> SCORE </h1>
     <div class="status_reset">
@@ -242,7 +253,7 @@ const display = (() => {
       cell.addEventListener('click', change);
     }
   };
-  return { welcome, chooseSign, gameBoard };
+  return { welcome, chooseSign, renderBoard };
 })();
 
 
