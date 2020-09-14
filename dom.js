@@ -1,5 +1,9 @@
 const cont = document.getElementById('game');
 const cellBloc = document.getElementsByClassName('cell');
+const last = document.getElementById('winner');
+const round = document.getElementById('play');
+let nameOne = document.getElementById('uname').value;
+let nameTwo = document.getElementById('uname2').value;
 let playerOne = null;
 let playerTwo = null;
 let isX = true;
@@ -16,8 +20,6 @@ return {getName};
 
 
 const createplayers = () => {
-let nameOne = document.getElementById('uname').value;
-let nameTwo = document.getElementById('uname2').value;
 console.log(nameOne, nameTwo);
  playerOne = Player(nameOne);
  playerTwo = Player(nameTwo);
@@ -26,9 +28,9 @@ console.log(nameOne, nameTwo);
 const winner = () => {
   
     if (sign === 'x') {
-      document.getElementById('winner').innerHTML = `${playerOne.getName()} WON!!!!`;
+      last.innerHTML = `${playerOne.getName()} WON!!!!`;
     } else if (sign === 't') {
-      document.getElementById('winner').innerHTML = `${playerTwo.getName()} WON!!!!`;
+      last.innerHTML = `${playerTwo.getName()} WON!!!!`;
     }
 };
 
@@ -36,9 +38,9 @@ const winner = () => {
 
   const next = () => {
     if (isX) {
-      document.getElementById('play').innerHTML = playerOne.getName();
+      round.innerHTML = playerOne.getName();
     } else {
-      document.getElementById('play').innerHTML = playerTwo.getName();
+      round.innerHTML = playerTwo.getName();
     }
   };
 
@@ -62,12 +64,10 @@ const display = (() => {
   const win = () => {
     cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
-
     <div class="status_reset">
  <button onclick="display.gameBoard()">Reset</button> 
   </div>
   <div class=" gameboard">
-
 <div class="grid-game"> 
    <div class="cell cellPlay w"> w</div>
    <div class="cell cellPlay w">w </div>
@@ -103,7 +103,6 @@ const display = (() => {
     <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
   </div>
   <div class=" gameboard">
-
     <div class="grid-game"> 
    <div class="cell"> </div>
    <div class="cell"> </div>
@@ -132,7 +131,6 @@ const display = (() => {
   <h6>Click to start the game<h6>
   </div>
   <div class=" gameboard">
-
    <div class="grid-game"> 
    <div class="cell"> </div>
    <div class="cell"> </div>
@@ -146,7 +144,6 @@ const display = (() => {
   </div>
    
   </div>  
-
   `;
     } else {
       welcome();
@@ -220,14 +217,12 @@ const display = (() => {
     isX = true;
     cont.innerHTML = `
   <h1 class="head"> SCORE </h1>
-
     <div class="status_reset">
  
    <div class="status"> <span id="play"> </span>is next</div>
  <button onclick="display.gameBoard()">Reset</button> 
   </div>
   <div class=" gameboard">
-
 <div class="grid-game"> 
    <div class="cell cellPlay top-left"></div>
    <div class="cell cellPlay top-middle"> </div>
@@ -253,4 +248,3 @@ const display = (() => {
 
 
 //logics
-
