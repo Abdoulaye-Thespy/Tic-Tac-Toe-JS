@@ -158,10 +158,6 @@ const botomRight = gameArray[8];
 
 
 
-gameBoard.renderBoard();
-gameBoard.clickEvent();
-
-
 
 
 
@@ -179,20 +175,65 @@ const gameController = (() => {
 
 
 const createPlayers = () => {
-let nameOne = document.getElementById('uname').value;
-let nameTwo = document.getElementById('uname2').value;
+let nameOne = document.getElementById('form3').value;
+let nameTwo = document.getElementById('form2').value;
+if ((nameOne !=='') && (nameTwo !=='')) {
  playerOne = Player(nameOne);
  playerTwo = Player(nameTwo);
+ round.innerHTML =''
+ diplayBoard();
+ gameBoard.renderBoard();
+gameBoard.clickEvent();
+}
+else {
+  round.innerHTML ='ENTER VALID NAMES'
+}
+
+
 };
+
+const validateForm = () => {
+    const name1 = document.getElementById('form3').value;
+    const name2 = document.getElementById('form2').value;
+    if (name1 === '' || name2 === '') {
+      return false;
+    }
+   return true;
+};
+
+const diplayBoard = () => {
+      cont.innerHTML = `
+  <h1 class="head" id="winner"> </h1>
+    <div class="status_reset">
+ <button onclick="gameBoard.reset()">Reset</button> 
+  </div>
+  <div class=" gameboard">
+<div class="grid-game"> 
+   <div class="cell cellPlay w"> </div>
+   <div class="cell cellPlay w"> </div>
+   <div class="cell cellPlay w"> </div>
+   <div class="cell cellPlay w"> </div>
+   <div class="cell cellPlay w"></div>
+   <div class="cell cellPlay w"></div>
+   <div class="cell cellPlay w"> </div>
+   <div class="cell cellPlay w"> </div>
+   <div class="cell cellPlay w"></div>
+  </div>
+   
+  </div>
+  `;
+  }
+  
 
 
     return {
-        createPlayers
+        createPlayers, validateForm
     }
+
 })();
 
 
-btnNext.addEventListener('click', gameController.createplayers);
+btnNext.addEventListener('click', gameController.createPlayers);
 
 
 
@@ -207,13 +248,13 @@ btnNext.addEventListener('click', gameController.createplayers);
 
   
 
-//   const next = () => {
-//     if (isX) {
-//       round.innerHTML = playerOne.getName();
-//     } else {
-//       round.innerHTML = playerTwo.getName();
-//     }
-//   };
+  const next = () => {
+    if (isX) {
+      round.innerHTML = playerOne.getName();
+    } else {
+      round.innerHTML = playerTwo.getName();
+    }
+  };
 
   // const validateForm = () => {
   //   const name = document.getElementById('uname').value;
@@ -234,36 +275,36 @@ btnNext.addEventListener('click', gameController.createplayers);
   
 
 
-//   const welcome = () => {
-//     cont.innerHTML = `  
-//   <h1 class="head">TIC TAC TOE JS</h1>
-//   <div class="was-validated form_div">
-//     <div class="form-group ">
-//       <label for="uname">PLAYER 1:</label>
-//       <input type="text" class="form-control" id="uname" placeholder="NAME PLAYER1" name="uname" required>
-//     </div>
-//     <div class="form-group ">
-//       <label for="uname">PLAYER 2:</label>
-//       <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
-//     </div>
-//     <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
-//   </div>
-//   <div class=" gameboard">
-//     <div class="grid-game"> 
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//   </div>
+  const welcome = () => {
+    cont.innerHTML = `  
+  <h1 class="head">TIC TAC TOE JS</h1>
+  <div class="was-validated form_div">
+    <div class="form-group ">
+      <label for="uname">PLAYER 1:</label>
+      <input type="text" class="form-control" id="uname" placeholder="NAME PLAYER1" name="uname" required>
+    </div>
+    <div class="form-group ">
+      <label for="uname">PLAYER 2:</label>
+      <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
+  </div>
+  <div class=" gameboard">
+    <div class="grid-game"> 
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+   <div class="cell"> </div>
+  </div>
    
-//   </div>
-//   `;
-//   };
+  </div>
+  `;
+  };
 
 
 //   const chooseSign = () => {
