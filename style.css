@@ -83,13 +83,11 @@ body {
   background-color: #16d0bd;
 }
 
-.t::before {
-  content: '0';
+.t {
   font-size: 150px;
 }
 
-.x::before {
-  content: 'X';
+.x {
   font-size: 150px;
 }
 
@@ -102,4 +100,13 @@ body {
 .w {
   font-size: 150px;
   color: orangered;
+}
+
+.x {
+
+}
+
+.t {
+  font-size: 130px;
+  margin-bottom: -15px;
 }
