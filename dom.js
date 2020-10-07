@@ -1,6 +1,5 @@
 const cont = document.getElementById('game');
 const cellBloc = document.getElementsByClassName('cell');
-const last = document.getElementById('winner');
 const round = document.getElementById('play');
 const btnNext = document.getElementById('next');
 
@@ -8,6 +7,7 @@ let playerOne = null;
 let playerTwo = null;
 let isX = true;
 let sign = null;
+let draw = 0;
 const index = (el) => [...el.parentElement.children].indexOf(el);
 
 const Player = (name) => {
@@ -16,9 +16,7 @@ const Player = (name) => {
 };
 
 const gameBoard = (() => {
-  const newArray = ['', '', '', '', '', '', '', '', ''];
   let gameArray = ['', '', '', '', '', '', '', '', ''];
-  const gameOver = false;
 
 
   const win = () => {
@@ -26,7 +24,6 @@ const gameBoard = (() => {
   <h1 class="head" id="winner"> </h1>
     <div class="status_reset">
     <div class="status"> <span id="play">  </span></div>
-
  <button onclick="gameBoard.reset()">Reset</button> 
   </div>
   <div class=" gameboard">
@@ -57,7 +54,7 @@ const gameBoard = (() => {
     const botomleft = gameArray[6];
     const botomMiddle = gameArray[7];
     const botomRight = gameArray[8];
-
+    /* eslint-disable max-len */
     if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
       sign = topLEft;
       win();
@@ -97,13 +94,13 @@ const gameBoard = (() => {
     }
   };
 
-
+  /* eslint-enable max-len */
   const next = () => {
     const round = document.getElementById('play');
     if (isX) {
       round.innerHTML = `${playerOne.getName()} is next`;
     } else if (isX === null) {
-      if (sign === 'x') {
+      if (sign === 'X') {
         round.innerHTML = `${playerOne.getName()} WON`;
         isX = true;
       } else {
@@ -113,18 +110,32 @@ const gameBoard = (() => {
     } else {
       round.innerHTML = `${playerTwo.getName()} is next`;
     }
+
+
+    if (draw === 9 && isX !== null) {
+      isX = true;
+      round.innerHTML = 'DRAW GAME!!!!!!!';
+    }
   };
 
 
+  const renderBoard = () => {
+    let i = 0;
+    for (let j = 0; j < cellBloc.length; j += 1) {
+      cellBloc[j].innerHTML = gameArray[i];
+      i += 1;
+    }
+  };
+
   const change = (e) => {
     const allClass = e.target.classList;
-    console.log('inside');
 
     if (allClass[3] !== 'x' && allClass[3] !== 't') {
       if (isX === true) {
         isX = false;
         const ind = index(e.target);
         e.target.classList.add('x');
+        draw += 1;
         gameArray[ind] = 'X';
         renderBoard();
         checkWin();
@@ -133,6 +144,7 @@ const gameBoard = (() => {
         isX = true;
         const ind = index(e.target);
         e.target.classList.add('t');
+        draw += 1;
         gameArray[ind] = '0';
         renderBoard();
         checkWin();
@@ -143,25 +155,18 @@ const gameBoard = (() => {
 
 
   const clickEvent = () => {
-    for (const cell of cellBloc) {
-      cell.addEventListener('click', change);
+    for (let i = 0; i < cellBloc.length; i += 1) {
+      cellBloc[i].addEventListener('click', change);
     }
   };
 
-
-  const renderBoard = () => {
-    let i = 0;
-    for (const cell of cellBloc) {
-      cell.innerHTML = gameArray[i];
-      i++;
-    }
-  };
 
   const reset = () => {
     gameArray = ['', '', '', '', '', '', '', '', ''];
     renderBoard();
     clickEvent();
     next();
+    draw = 0;
   };
 
 
@@ -172,22 +177,6 @@ const gameBoard = (() => {
 
 
 const gameController = (() => {
-  const createPlayers = () => {
-    const nameOne = document.getElementById('form3').value;
-    const nameTwo = document.getElementById('form2').value;
-    if ((nameOne !== '') && (nameTwo !== '')) {
-      playerOne = Player(nameOne);
-      playerTwo = Player(nameTwo);
-      round.innerHTML = '';
-      diplayBoard();
-      gameBoard.renderBoard();
-      gameBoard.clickEvent();
-      gameBoard.next();
-    } else {
-      round.innerHTML = 'ENTER VALID NAMES';
-    }
-  };
-
   const diplayBoard = () => {
     cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
@@ -212,6 +201,22 @@ const gameController = (() => {
   `;
   };
 
+  const createPlayers = () => {
+    const nameOne = document.getElementById('form3').value;
+    const nameTwo = document.getElementById('form2').value;
+    if ((nameOne !== '') && (nameTwo !== '')) {
+      playerOne = Player(nameOne);
+      playerTwo = Player(nameTwo);
+      round.innerHTML = '';
+      diplayBoard();
+      gameBoard.renderBoard();
+      gameBoard.clickEvent();
+      gameBoard.next();
+    } else {
+      round.innerHTML = 'ENTER VALID NAMES';
+    }
+  };
+
 
   return {
     createPlayers,
@@ -220,86 +225,3 @@ const gameController = (() => {
 
 
 btnNext.addEventListener('click', gameController.createPlayers);
-
-
-// const validateForm = () => {
-//   const name = document.getElementById('uname').value;
-//   const author = document.getElementById('uname2').value;
-//   if (name === '' || author === '') {
-//     return false;
-//   }
-//   return true;
-// };
-
-
-// const display = (() => {
-
-
-// const welcome = () => {
-//   cont.innerHTML = `
-// <h1 class="head">TIC TAC TOE JS</h1>
-// <div class="was-validated form_div">
-//   <div class="form-group ">
-//     <label for="uname">PLAYER 1:</label>
-//     <input type="text" class="form-control" id="uname" placeholder="NAME PLAYER1" name="uname" required>
-//   </div>
-//   <div class="form-group ">
-//     <label for="uname">PLAYER 2:</label>
-//     <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
-//   </div>
-//   <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
-// </div>
-// <div class=" gameboard">
-//   <div class="grid-game">
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-//  <div class="cell"> </div>
-// </div>
-
-// </div>
-// `;
-// };
-
-
-//   const chooseSign = () => {
-//     if (validateForm()) {
-//       cont.innerHTML = `
-//    <h1 class="head">TIC TAC TOE JS</h1>
-//   <div class="form_div">
-//   <h4 class="player"> Welcome, ${playerOne.getName()} your sign is: X<h4>
-//   <h4 class="player"> Welcome, ${playerTwo.getName()} your sign is: 0<h4>
-//   <button type="submit" class="btn btn-primary" onclick="display.renderBoard()">NEXT</button>
-//   <h6>Click to start the game<h6>
-//   </div>
-//   <div class=" gameboard">
-//    <div class="grid-game">
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//    <div class="cell"> </div>
-//   </div>
-
-//   </div>
-//   `;
-//     } else {
-//       welcome();
-//     }
-//   };
-
-
-//   return { welcome, chooseSign, renderBoard };
-// })();
-
-
-// //logics
