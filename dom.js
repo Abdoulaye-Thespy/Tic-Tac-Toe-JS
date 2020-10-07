@@ -13,23 +13,22 @@ const index = (el) => [...el.parentElement.children].indexOf(el);
 const Player = (name) => {
     
 const getName = () => name;
-
 return {getName};
 
 };
 
-//board Module
 const gameBoard = (() => {
     const newArray = ['','','','','','','','',''];
     let gameArray = ['','','','','','','','',''];
     let gameOver = false;
 
 
-
-      const win = () => {
+    const win = () => {
     cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
     <div class="status_reset">
+    <div class="status"> <span id="play">  </span></div>
+
  <button onclick="gameBoard.reset()">Reset</button> 
   </div>
   <div class=" gameboard">
@@ -47,7 +46,7 @@ const gameBoard = (() => {
    
   </div>
   `;
-  // winner();
+
   };
   
 
@@ -67,30 +66,62 @@ const botomRight = gameArray[8];
     if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
       sign = topLEft;
       win();
+      isX = null;
     } else if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
       sign = topMiddle;
       win();
+      isX = null;
     } else if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
       sign = topRight;
       win();
+      isX = null;
     } else if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
       sign = middleLeft;
       win();
+      isX = null;
     } else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
       sign = middleMiddle;
       win();
+      isX = null;
     } else if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
       sign = middleRight;
       win();
+      isX = null;
     } else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
       sign = botomleft;
       win();
+      isX = null;
     } else if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
       sign = botomMiddle;
       win();
+      isX = null;
     } else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
       sign = botomRight;
       win();
+      isX = null;
+    }
+  };
+
+
+   const next = () => {
+    const round = document.getElementById('play');
+    if (isX) {
+      round.innerHTML = `${playerOne.getName()} is next`;
+    } 
+
+    else if (isX===null){
+      if (sign==='x'){
+              round.innerHTML = `${playerOne.getName()} WON`;
+      isX = true;
+      }
+            else{
+              round.innerHTML = `${playerTwo.getName()} WON`;
+      isX = true;
+      }
+
+    }
+    else {
+      round.innerHTML = `${playerTwo.getName()} is next`;
     }
   };
 
@@ -107,20 +138,18 @@ const botomRight = gameArray[8];
         isX = false;
         let ind = index(e.target);
         e.target.classList.add('x');
-        console.log(e.target);
-        gameArray[ind]='x'
+        gameArray[ind]='X'
         renderBoard();
         checkWin();
-        // next();
+        next();
       } else {
         isX = true;
         let ind = index(e.target);
         e.target.classList.add('t');
         gameArray[ind]='0'
-        console.log(e.target);
         renderBoard();
         checkWin();
-        // next();
+        next();
       }
     }
   };
@@ -147,12 +176,13 @@ const botomRight = gameArray[8];
     gameArray=['','','','','','','','',''];
     renderBoard();
     clickEvent();
+    next();
   }
 
 
 
     return {
-        reset, clickEvent, renderBoard
+        reset, clickEvent, renderBoard, next
     }
 })();
 
@@ -182,8 +212,9 @@ if ((nameOne !=='') && (nameTwo !=='')) {
  playerTwo = Player(nameTwo);
  round.innerHTML =''
  diplayBoard();
- gameBoard.renderBoard();
+gameBoard.renderBoard();
 gameBoard.clickEvent();
+gameBoard.next();
 }
 else {
   round.innerHTML ='ENTER VALID NAMES'
@@ -192,19 +223,11 @@ else {
 
 };
 
-const validateForm = () => {
-    const name1 = document.getElementById('form3').value;
-    const name2 = document.getElementById('form2').value;
-    if (name1 === '' || name2 === '') {
-      return false;
-    }
-   return true;
-};
-
 const diplayBoard = () => {
       cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
     <div class="status_reset">
+    <div class="status"> <span id="play">  </span></div>
  <button onclick="gameBoard.reset()">Reset</button> 
   </div>
   <div class=" gameboard">
@@ -226,8 +249,9 @@ const diplayBoard = () => {
   
 
 
+
     return {
-        createPlayers, validateForm
+        createPlayers
     }
 
 })();
@@ -237,24 +261,8 @@ btnNext.addEventListener('click', gameController.createPlayers);
 
 
 
-// const winner = () => {
-  
-//     if (sign === 'x') {
-//       last.innerHTML = `${playerOne.getName()} WON!!!!`;
-//     } else if (sign === 't') {
-//       last.innerHTML = `${playerTwo.getName()} WON!!!!`;
-//     }
-// };
 
-  
 
-  const next = () => {
-    if (isX) {
-      round.innerHTML = playerOne.getName();
-    } else {
-      round.innerHTML = playerTwo.getName();
-    }
-  };
 
   // const validateForm = () => {
   //   const name = document.getElementById('uname').value;
@@ -275,36 +283,36 @@ btnNext.addEventListener('click', gameController.createPlayers);
   
 
 
-  const welcome = () => {
-    cont.innerHTML = `  
-  <h1 class="head">TIC TAC TOE JS</h1>
-  <div class="was-validated form_div">
-    <div class="form-group ">
-      <label for="uname">PLAYER 1:</label>
-      <input type="text" class="form-control" id="uname" placeholder="NAME PLAYER1" name="uname" required>
-    </div>
-    <div class="form-group ">
-      <label for="uname">PLAYER 2:</label>
-      <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
-    </div>
-    <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
-  </div>
-  <div class=" gameboard">
-    <div class="grid-game"> 
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-   <div class="cell"> </div>
-  </div>
+  // const welcome = () => {
+  //   cont.innerHTML = `  
+  // <h1 class="head">TIC TAC TOE JS</h1>
+  // <div class="was-validated form_div">
+  //   <div class="form-group ">
+  //     <label for="uname">PLAYER 1:</label>
+  //     <input type="text" class="form-control" id="uname" placeholder="NAME PLAYER1" name="uname" required>
+  //   </div>
+  //   <div class="form-group ">
+  //     <label for="uname">PLAYER 2:</label>
+  //     <input type="text" class="form-control" id="uname2" placeholder="NAME PLAYER2" name="uname" required>
+  //   </div>
+  //   <button type="submit" class="btn btn-primary" onclick="createplayers()">Submit</button>
+  // </div>
+  // <div class=" gameboard">
+  //   <div class="grid-game"> 
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  //  <div class="cell"> </div>
+  // </div>
    
-  </div>
-  `;
-  };
+  // </div>
+  // `;
+  // };
 
 
 //   const chooseSign = () => {
