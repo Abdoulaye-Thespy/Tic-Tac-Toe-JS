@@ -12,7 +12,7 @@ const index = (el) => [...el.parentElement.children].indexOf(el);
 
 export const Player = (name) => {
   const getName = () => name;
-  return { getName };
+  return { getName, name };
 };
 
 const gameBoard = (() => {
