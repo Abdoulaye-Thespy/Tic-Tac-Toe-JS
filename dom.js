@@ -10,7 +10,7 @@ let sign = null;
 let draw = 0;
 const index = (el) => [...el.parentElement.children].indexOf(el);
 
-const Player = (name) => {
+export const Player = (name) => {
   const getName = () => name;
   return { getName };
 };
@@ -223,5 +223,6 @@ const gameController = (() => {
   };
 })();
 
-
-btnNext.addEventListener('click', gameController.createPlayers);
+if(btnNext){
+btnNext.addEventListener('click', ameController.createPlayers);
+}
