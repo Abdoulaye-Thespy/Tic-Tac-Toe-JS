@@ -2,7 +2,7 @@ const cont = document.getElementById('game');
 const cellBloc = document.getElementsByClassName('cell');
 const round = document.getElementById('play');
 const btnNext = document.getElementById('next');
-
+let gameArray = ['x', 'x', '', '', '', '', '', '', ''];
 let playerOne = null;
 let playerTwo = null;
 let isX = true;
@@ -15,8 +15,7 @@ export const Player = (name) => {
   return { getName, name };
 };
 
-const gameBoard = (() => {
-  let gameArray = ['', '', '', '', '', '', '', '', ''];
+export const gameBoard = (() => {
 
 
   const win = () => {
@@ -44,7 +43,7 @@ const gameBoard = (() => {
   };
 
 
-  const checkWin = () => {
+ const checkWin = () => {
     const topLEft = gameArray[0];
     const topMiddle = gameArray[1];
     const topRight = gameArray[2];
@@ -57,41 +56,43 @@ const gameBoard = (() => {
     /* eslint-disable max-len */
     if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
       sign = topLEft;
-      win();
       isX = null;
+      return true;
     } else if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
       sign = topMiddle;
-      win();
       isX = null;
+      return true;
     } else if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
       sign = topRight;
-      win();
       isX = null;
+      return true;
     } else if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
       sign = middleLeft;
-      win();
       isX = null;
+      return true;
     } else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
       sign = middleMiddle;
-      win();
       isX = null;
+      return true;
     } else if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
       sign = middleRight;
-      win();
       isX = null;
+      return true;
     } else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
       sign = botomleft;
-      win();
       isX = null;
+      return true;
     } else if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
       sign = botomMiddle;
-      win();
       isX = null;
+      return true;
     } else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
       sign = botomRight;
-      win();
       isX = null;
+      return true;
     }
+
+    return false;
   };
 
   /* eslint-enable max-len */
@@ -138,7 +139,8 @@ const gameBoard = (() => {
         draw += 1;
         gameArray[ind] = 'X';
         renderBoard();
-        checkWin();
+        if(checkWin())
+          win();
         next();
       } else {
         isX = true;
@@ -147,7 +149,8 @@ const gameBoard = (() => {
         draw += 1;
         gameArray[ind] = '0';
         renderBoard();
-        checkWin();
+        if(checkWin())
+          win();
         next();
       }
     }
@@ -171,7 +174,7 @@ const gameBoard = (() => {
 
 
   return {
-    reset, clickEvent, renderBoard, next,
+    reset, clickEvent, renderBoard, next,checkWin, gameArray,
   };
 })();
 
@@ -224,5 +227,5 @@ const gameController = (() => {
 })();
 
 if(btnNext){
-btnNext.addEventListener('click', ameController.createPlayers);
+btnNext.addEventListener('click', gameController.createPlayers);
 }
