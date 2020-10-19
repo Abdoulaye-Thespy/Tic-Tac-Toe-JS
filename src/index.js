@@ -23,7 +23,7 @@ export const gameBoard = (() => {
   <h1 class="head" id="winner"> </h1>
     <div class="status_reset">
     <div class="status"> <span id="play">  </span></div>
- <button onclick="gameBoard.reset()">Reset</button> 
+ <button id="btnssw">PLAY AGAIN</button> 
   </div>
   <div class=" gameboard">
 <div class="grid-game"> 
@@ -40,6 +40,7 @@ export const gameBoard = (() => {
    
   </div>
   `;
+  clickEvent();
   };
 
 
@@ -158,14 +159,27 @@ export const gameBoard = (() => {
 
 
   const clickEvent = () => {
+    if (cellBloc) {
     for (let i = 0; i < cellBloc.length; i += 1) {
       cellBloc[i].addEventListener('click', change);
     }
+  }
+const btnres1 = document.getElementById('btnsss');
+if (btnres1) {
+btnres1.addEventListener('click', reset);
+}
+const btnres2 = document.getElementById('btnssw');
+if(btnres2) {
+btnres2.addEventListener('click', reset);
+}
+
+
   };
 
 
   const reset = () => {
     gameArray = ['', '', '', '', '', '', '', '', ''];
+    gameController.diplayBoard();
     renderBoard();
     clickEvent();
     next();
@@ -186,7 +200,6 @@ const gameController = (() => {
   <h1 class="head" id="winner"> </h1>
     <div class="status_reset">
     <div class="status"> <span id="play">  </span></div>
- <button onclick="gameBoard.reset()">Reset</button> 
   </div>
   <div class=" gameboard">
 <div class="grid-game"> 
@@ -223,10 +236,12 @@ const gameController = (() => {
 
 
   return {
-    createPlayers,
+    createPlayers,diplayBoard,
   };
 })();
+
 
 if(btnNext){
 btnNext.addEventListener('click', gameController.createPlayers);
 }
+
