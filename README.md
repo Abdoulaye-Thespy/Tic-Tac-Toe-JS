@@ -22,7 +22,7 @@
 - Clone the git repository.
 - cd into the project
 - Run `npx webpack` to bundle the JS files
-- Open index.html using your prefered browser to play the game.
+- Open index.html using your prefered browser to play the game before going to testing.
 - Run `npm run test` to run and see if all the tests are passing.
 
 ## Author
