@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.5.3",
+    "webpack": "^5.1.2",
+    "webpack-cli": "^4.0.0"
+  },
+  "name": "Tic-Tac-Toe-JS",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdoulaye-Thespy/Tic-Tac-Toe-JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdoulaye-Thespy/Tic-Tac-Toe-JS/issues"
+  },
+  "homepage": "https://github.com/Abdoulaye-Thespy/Tic-Tac-Toe-JS#readme"
+}
