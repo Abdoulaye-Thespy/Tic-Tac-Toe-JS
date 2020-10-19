@@ -16,8 +16,6 @@ export const Player = (name) => {
 };
 
 export const gameBoard = (() => {
-
-
   const win = () => {
     cont.innerHTML = `
   <h1 class="head" id="winner"> </h1>
@@ -40,11 +38,13 @@ export const gameBoard = (() => {
    
   </div>
   `;
-  clickEvent();
+    /* eslint-disable no-use-before-define */
+    clickEvent();
+    /* eslint-enable no-use-before-define */
   };
 
 
- const checkWin = (gameArrayNew) => {
+  const checkWin = (gameArrayNew) => {
     const topLEft = gameArrayNew[0];
     const topMiddle = gameArrayNew[1];
     const topRight = gameArrayNew[2];
@@ -53,41 +53,41 @@ export const gameBoard = (() => {
     const middleRight = gameArrayNew[5];
     const botomleft = gameArrayNew[6];
     const botomMiddle = gameArrayNew[7];
-    const botomRight =gameArrayNew[8];
+    const botomRight = gameArrayNew[8];
     /* eslint-disable max-len */
     if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
       sign = topLEft;
       isX = null;
       return true;
-    } else if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
+    } if ((topMiddle && topMiddle === topLEft && topMiddle === topRight) || (topMiddle && topMiddle === middleMiddle && topMiddle === botomMiddle)) {
       sign = topMiddle;
       isX = null;
       return true;
-    } else if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
+    } if ((topRight && topRight === topLEft && topRight === topMiddle) || (topRight && topRight === middleRight && topRight === botomRight) || (topRight && topRight === middleMiddle && topLEft === botomleft)) {
       sign = topRight;
       isX = null;
       return true;
-    } else if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
+    } if ((middleLeft && middleLeft === topLEft && middleLeft === botomleft) || (middleLeft && middleLeft === middleMiddle && middleLeft === middleRight)) {
       sign = middleLeft;
       isX = null;
       return true;
-    } else if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
+    } if ((middleMiddle && middleMiddle === middleLeft && middleMiddle === middleRight) || (middleMiddle && middleMiddle === topMiddle && middleMiddle === botomMiddle)) {
       sign = middleMiddle;
       isX = null;
       return true;
-    } else if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
+    } if ((middleRight && middleRight === middleLeft && middleRight === middleMiddle) || (middleRight && middleRight === topRight && middleRight === botomRight)) {
       sign = middleRight;
       isX = null;
       return true;
-    } else if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
+    } if ((botomleft && botomleft === middleLeft && botomleft === topLEft) || (botomleft && botomleft === botomMiddle && botomleft === botomRight) || (botomleft && botomleft === middleMiddle && botomleft === topRight)) {
       sign = botomleft;
       isX = null;
       return true;
-    } else if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
+    } if ((botomMiddle && botomMiddle === middleMiddle && botomMiddle === topMiddle) || (botomMiddle && botomMiddle === botomleft && botomMiddle === botomRight)) {
       sign = botomMiddle;
       isX = null;
       return true;
-    } else if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
+    } if ((botomRight && botomRight === middleRight && botomRight === topRight) || (botomRight && botomRight === botomMiddle && botomRight === botomleft) || (botomRight && botomRight === middleMiddle && botomRight === topLEft)) {
       sign = botomRight;
       isX = null;
       return true;
@@ -140,8 +140,7 @@ export const gameBoard = (() => {
         draw += 1;
         gameArray[ind] = 'X';
         renderBoard();
-        if(checkWin(gameArray))
-          win();
+        if (checkWin(gameArray)) win();
         next();
       } else {
         isX = true;
@@ -150,33 +149,13 @@ export const gameBoard = (() => {
         draw += 1;
         gameArray[ind] = '0';
         renderBoard();
-        if(checkWin(gameArray))
-          win();
+        if (checkWin(gameArray)) win();
         next();
       }
     }
   };
 
-
-  const clickEvent = () => {
-    if (cellBloc) {
-    for (let i = 0; i < cellBloc.length; i += 1) {
-      cellBloc[i].addEventListener('click', change);
-    }
-  }
-const btnres1 = document.getElementById('btnsss');
-if (btnres1) {
-btnres1.addEventListener('click', reset);
-}
-const btnres2 = document.getElementById('btnssw');
-if(btnres2) {
-btnres2.addEventListener('click', reset);
-}
-
-
-  };
-
-
+  /* eslint-disable no-use-before-define */
   const reset = () => {
     gameArray = ['', '', '', '', '', '', '', '', ''];
     gameController.diplayBoard();
@@ -185,13 +164,26 @@ btnres2.addEventListener('click', reset);
     next();
     draw = 0;
   };
-
-
+  const clickEvent = () => {
+    if (cellBloc) {
+      for (let i = 0; i < cellBloc.length; i += 1) {
+        cellBloc[i].addEventListener('click', change);
+      }
+    }
+    const btnres1 = document.getElementById('btnsss');
+    if (btnres1) {
+      btnres1.addEventListener('click', reset);
+    }
+    const btnres2 = document.getElementById('btnssw');
+    if (btnres2) {
+      btnres2.addEventListener('click', reset);
+    }
+  };
+  /* eslint-enable no-use-before-define */
   return {
-    reset, clickEvent, renderBoard, next,checkWin, gameArray,
+    reset, clickEvent, renderBoard, next, checkWin, gameArray,
   };
 })();
-
 
 
 const gameController = (() => {
@@ -236,12 +228,11 @@ const gameController = (() => {
 
 
   return {
-    createPlayers,diplayBoard,
+    createPlayers, diplayBoard,
   };
 })();
 
 
-if(btnNext){
-btnNext.addEventListener('click', gameController.createPlayers);
+if (btnNext) {
+  btnNext.addEventListener('click', gameController.createPlayers);
 }
-
