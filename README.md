@@ -13,19 +13,27 @@
 
 - HTML5
 - CSS3
+- Javascript
+- Webpack 
 - Boostrap
 
 ## Getting Started
 
 - Clone the git repository.
 - cd into the project
-- Open index.html using your prefered browser
+- Run `npx webpack` to bundle the JS files
+- Open index.html using your prefered browser to play the game.
+- Run `npm run test` to run and see if all the tests are passing.
 
 ## Author
 
 Abdoulaye Njigouh
 
-- Github: [@Abdoulaye](https://github.com/Abdoulaye-Thespy)
+- Github: [@Abdoulaye-Thespy](https://github.com/Abdoulaye-Thespy)
+
+- Linkedin: [@njigouh-abdoulaye-razak](https://www.linkedin.com/in/njigouh-abdoulaye-razak/)
+
+- Twitter: [@AbdoulayeThe](https://twitter.com/AbdoulayeThe)
 
 
 ## Show your support
