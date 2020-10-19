@@ -2,7 +2,7 @@ const cont = document.getElementById('game');
 const cellBloc = document.getElementsByClassName('cell');
 const round = document.getElementById('play');
 const btnNext = document.getElementById('next');
-let gameArray = ['x', 'x', '', '', '', '', '', '', ''];
+let gameArray = ['', '', '', '', '', '', '', '', ''];
 let playerOne = null;
 let playerTwo = null;
 let isX = true;
@@ -43,16 +43,16 @@ export const gameBoard = (() => {
   };
 
 
- const checkWin = () => {
-    const topLEft = gameArray[0];
-    const topMiddle = gameArray[1];
-    const topRight = gameArray[2];
-    const middleLeft = gameArray[3];
-    const middleMiddle = gameArray[4];
-    const middleRight = gameArray[5];
-    const botomleft = gameArray[6];
-    const botomMiddle = gameArray[7];
-    const botomRight = gameArray[8];
+ const checkWin = (gameArrayNew) => {
+    const topLEft = gameArrayNew[0];
+    const topMiddle = gameArrayNew[1];
+    const topRight = gameArrayNew[2];
+    const middleLeft = gameArrayNew[3];
+    const middleMiddle = gameArrayNew[4];
+    const middleRight = gameArrayNew[5];
+    const botomleft = gameArrayNew[6];
+    const botomMiddle = gameArrayNew[7];
+    const botomRight =gameArrayNew[8];
     /* eslint-disable max-len */
     if ((topLEft && topLEft === topMiddle && topLEft === topRight) || (topLEft && topLEft === middleLeft && topLEft === botomleft) || (topLEft && topLEft === middleMiddle && topLEft === botomRight)) {
       sign = topLEft;
@@ -139,7 +139,7 @@ export const gameBoard = (() => {
         draw += 1;
         gameArray[ind] = 'X';
         renderBoard();
-        if(checkWin())
+        if(checkWin(gameArray))
           win();
         next();
       } else {
@@ -149,7 +149,7 @@ export const gameBoard = (() => {
         draw += 1;
         gameArray[ind] = '0';
         renderBoard();
-        if(checkWin())
+        if(checkWin(gameArray))
           win();
         next();
       }
@@ -177,6 +177,7 @@ export const gameBoard = (() => {
     reset, clickEvent, renderBoard, next,checkWin, gameArray,
   };
 })();
+
 
 
 const gameController = (() => {
